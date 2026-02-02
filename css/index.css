@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&family=Lato:wght@300;400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem 0;
+    border-bottom: 3px solid #667eea;
+    padding-bottom: 0.5rem;
+}
+
+#Experience h2,
+#Connect h2 {
+    text-align: center;
+}
+
+section {
+    margin: 2rem 0;
+    padding: 2rem;
+}
+
+.about-centered {
+    text-align: center;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#Experience ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.experience-item {
+    background-color: #fff;
+    border-left: 4px solid #667eea;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.experience-item:hover {
+    transform: translateX(5px);
+}
+
+.connect-links {
+    text-align: center;
+    padding: 2rem;
+}
+
+.connect-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 1rem;
+    padding: 1rem;
+    width: 50px;
+    height: 50px;
+    background-color: #667eea;
+    color: white;
+    text-decoration: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.connect-links a:hover {
+    background-color: #764ba2;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1.5rem;
+    display: block;
+    border: 4px solid #667eea;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
