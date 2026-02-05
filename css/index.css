@@ -11,6 +11,35 @@ body {
     color: #333;
     font-family: 'Lato', sans-serif;
     line-height: 1.6;
+    padding-top: 80px;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #667eea;
 }
 
 h1, h2, h3 {
@@ -59,37 +88,68 @@ section {
     list-style: none;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .experience-item {
     background-color: #fff;
     border-left: 4px solid #667eea;
     padding: 1.5rem;
-    margin: 1rem 0;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .experience-item:hover {
-    transform: translateX(5px);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.experience-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #667eea;
+}
+
+.experience-date {
+    background-color: #f0f0f0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #666;
+}
+
+.experience-description {
+    margin: 0.5rem 0 0 0;
+    color: #555;
+    font-style: italic;
 }
 
 .connect-links {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
     padding: 2rem;
+    flex-wrap: wrap;
 }
 
 .connect-links a {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 1rem;
-    padding: 1rem;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     background-color: #667eea;
     color: white;
     text-decoration: none;
@@ -97,6 +157,12 @@ section {
     font-size: 1.5rem;
     transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
     box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.connect-links a:hover {
+    background-color: #764ba2;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
 }
 
 .connect-links a:hover {
