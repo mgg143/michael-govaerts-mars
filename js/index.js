@@ -53,3 +53,89 @@ for (let i = 0; i < skills.length; i++) {
     skillsList.appendChild(skill);
 }
 
+// ============ Message Section Visibility Logic ============
+/**
+ * STRETCH GOAL: Hide the #messages section if the list is empty.
+ * We'll call this function every time we add or remove a message.
+ */
+function toggleMessageHeader() {
+    const messageSection = document.querySelector("#messages");
+    const messageList = messageSection.querySelector("ul");
+    
+    if (messageList.children.length === 0) {
+        messageSection.style.display = "none";
+    } else {
+        messageSection.style.display = "block";
+    }
+}
+
+// Initial check on page load
+toggleMessageHeader();
+
+// ============ Handle Message Form Submission ============
+// D. Handle the leave_message form submission:
+// 1. Create a variable named messageForm and use "DOM Selection" to select the "leave_message" form by name attribute
+const messageForm = document.querySelector('form[name="leave_message"]');
+
+// 2. Add an event listener to the messageForm element that handles the "submit" event
+messageForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    
+    // 3. Create variables to retrieve the values from the form fields
+    const usersName = event.target.usersName.value;
+    const usersEmail = event.target.usersEmail.value;
+    const usersMessage = event.target.usersMessage.value;
+    
+    // 4. Log the variables to the console
+    console.log(usersName, usersEmail, usersMessage);
+
+    // A. Select the Message Section and List
+    const messageSection = document.querySelector("#messages");
+    const messageList = messageSection.querySelector("ul");
+
+    // B. Create a new message (li) element
+    const newMessage = document.createElement("li");
+    newMessage.innerHTML = `
+        <a href="mailto:${usersEmail}">${usersName}</a> 
+        <span>wrote: ${usersMessage} </span>
+    `;
+
+    // C. Create Edit Button (STRETCH GOAL)
+    const editButton = document.createElement("button");
+    editButton.innerText = "edit";
+    editButton.type = "button";
+    editButton.addEventListener("click", () => {
+        const span = newMessage.querySelector("span");
+        const newText = prompt("Edit your message:", span.innerText.replace("wrote: ", ""));
+        if (newText !== null && newText.trim() !== "") {
+            span.innerText = `wrote: ${newText}`;
+        }
+    });
+
+    // D. Create Remove Button
+    const removeButton = document.createElement("button");
+    removeButton.innerText = "remove";
+    removeButton.type = "button";
+    
+    removeButton.addEventListener("click", () => {
+        // DOM Traversal: Find the button's parent (li) and remove it
+        const entry = removeButton.parentNode;
+        entry.remove();
+        // Re-check visibility after removing
+        toggleMessageHeader();
+    });
+
+    // E. Append Buttons to the New Message
+    newMessage.appendChild(editButton);
+    newMessage.appendChild(removeButton);
+
+    // F. Append New Message to the List
+    messageList.appendChild(newMessage);
+
+    // G. Re-check visibility after adding a message
+    toggleMessageHeader();
+
+    // 5. Reset the form after submission using the reset method
+    event.target.reset(); 
+});
+

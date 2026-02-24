@@ -351,3 +351,55 @@ of our media queries. This will be noted below as "change #" in the comments.
         box-shadow: 0 0.625rem 1.875rem rgba(102, 126, 234, 0.5); /* 10px,30px */
     }
 }
+
+/* ============ BASE STYLES (Mobile Default) ============ */
+/* We start with touch-friendly sizes and full-width layouts */
+
+form[name="leave_message"] {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 0 auto;
+    width: 100%; /* Take up full width on small screens */
+}
+
+form[name="leave_message"] input, 
+form[name="leave_message"] textarea,
+button {
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    
+    /* Mobile-first: start with larger touch targets */
+    min-height: 48px; 
+    font-size: 1.1rem; 
+}
+
+button {
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* ============ TABLET/DESKTOP STYLES ============ */
+/* Now we use min-width to scale things DOWN or add constraints for larger screens */
+
+@media (min-width: 601px) {
+    form[name="leave_message"] {
+        max-width: 500px; /* Constrain the width so it's not too wide on desktop */
+    }
+
+    form[name="leave_message"] input, 
+    form[name="leave_message"] textarea,
+    button {
+        font-size: 1rem; /* Slightly smaller text is fine when a cursor is used */
+        min-height: auto; /* We can let the padding determine height on desktop */
+    }
+}
