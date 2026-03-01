@@ -139,3 +139,23 @@ messageForm.addEventListener("submit", (event) => {
     event.target.reset(); 
 });
 
+// ============ Fetch GitHub Repositories ============
+// E. Fetch GitHub repositories and display them in the Projects section:
+// 1. Create the GET request
+fetch('https://api.github.com/users/mgg143/repos')
+  .then(response => response.json()) // 2. Handle the response data
+  .then(repositories => { // 3. Log the repositories to the console to check the data
+    console.log(repositories);
+// 4. Select the Projects section by id and query the section to find the <ul> within it
+    const projectSection = document.getElementById('projects');
+    const projectList = projectSection.querySelector('ul');
+// 5. Use a for loop to iterate through the repositories array and create a list item for each repository, then append it to the projectList
+    for (let i = 0; i < repositories.length; i++) {
+      const project = document.createElement('li'); // Create a new list item element
+      project.innerText = repositories[i].name; // Set the inner text of the list item to the repository name
+      projectList.appendChild(project); // Append the list item to the projectList's <ul> element
+    }
+  })
+  .catch(error => { // 6. Handle any errors that occur during the fetch request
+    console.error('Error:', error);
+  });

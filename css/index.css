@@ -167,6 +167,38 @@ section {
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
 }
 
+/* Projects (mobile-first) */
+#projects ul {
+  display: flex;
+  flex-direction: column; /* Stacked vertically for mobile */
+  gap: 15px;              /* Spacing between items */
+  padding: 0;             /* Remove default indentation */
+  list-style-type: none;  /* Remove those bullet points */
+}
+
+/* Style the individual <li> items (the "cards") */
+#projects li {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.2s ease; /* Smooth hover effect */
+  overflow-wrap: anywhere; /* Allow long words to break and prevent overflow */
+  hyphens: auto; /* Enable hyphenation for better text flow */
+  min-height: 100px;
+  width: 100%;
+  min-width: 0; /* Ensure it can shrink properly on small screens */ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#projects li:hover {
+  transform: translateY(-5px); /* Lift up slightly on hover */
+  background-color: #e9e9e9;
+}
+
 /* Connect / social links */
 .connect-links {
     display: flex;
@@ -268,6 +300,18 @@ of our media queries. This will be noted below as "change #" in the comments.
     #Skills li:hover {
         transform: translateY(-0.125rem);
         box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+    }
+
+    #projects ul {
+        display: grid; /* Grid is much more stable than Flex for alignment */
+        grid-template-columns: repeat(2, 1fr); /* Exactly 2 columns */
+        gap: 1.5rem;
+    }
+
+    #projects li {
+        width: auto; /* Let the grid handle the width */
+        display: block; /* Standard block layout inside the grid cell */
+        text-align: center;
     }
 
     /* Two changes to .experience-item */
