@@ -163,6 +163,8 @@ fetch('https://api.github.com/users/mgg143/repos')
 
   // 5. Now we have the actual list of repositories (we call them 'repositories')
   .then(repositories => {
+    // Log the repositories to the console to check the data
+    console.log(repositories);
     // Select the "projects" section and the "ul" (unordered list) inside it
     const projectSection = document.getElementById('projects');
     const projectList = projectSection.querySelector('ul');
