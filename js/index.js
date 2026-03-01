@@ -140,22 +140,63 @@ messageForm.addEventListener("submit", (event) => {
 });
 
 // ============ Fetch GitHub Repositories ============
-// E. Fetch GitHub repositories and display them in the Projects section:
-// 1. Create the GET request
+// Added explicit comments to each step because I'm unlikely to remember
+// why I wrote this code in a few months, and I want to be able to understand 
+// it when I come back to it!
+
+// 1. 'fetch' is like sending a mailman to GitHub's address to ask for data
 fetch('https://api.github.com/users/mgg143/repos')
-  .then(response => response.json()) // 2. Handle the response data
-  .then(repositories => { // 3. Log the repositories to the console to check the data
-    console.log(repositories);
-// 4. Select the Projects section by id and query the section to find the <ul> within it
+  
+  // 2. '.then' means "Once the mailman comes back, do this next"
+  .then(response => {
+    
+    // 3. Check if the "mailman" actually found the house (status 200-299)
+    // If 'response.ok' is false, something went wrong (like a 404 error)
+    if (!response.ok) {
+      // This "throws" us straight down to the .catch() block below
+      throw new Error('Network response was not ok');
+    }
+    
+    // 4. If it was successful, turn that data into a format (JSON) JS can read
+    return response.json();
+  })
+
+  // 5. Now we have the actual list of repositories (we call them 'repositories')
+  .then(repositories => {
+    // Select the "projects" section and the "ul" (unordered list) inside it
     const projectSection = document.getElementById('projects');
     const projectList = projectSection.querySelector('ul');
-// 5. Use a for loop to iterate through the repositories array and create a list item for each repository, then append it to the projectList
+
+    // 6. Loop through every project we received from GitHub
     for (let i = 0; i < repositories.length; i++) {
-      const project = document.createElement('li'); // Create a new list item element
-      project.innerText = repositories[i].name; // Set the inner text of the list item to the repository name
-      projectList.appendChild(project); // Append the list item to the projectList's <ul> element
+      // Create a brand new "li" (list item) element in memory
+      const project = document.createElement('li');
+      
+      // Set the text of that list item to the name of the GitHub repo
+      project.innerText = repositories[i].name;
+      
+      // Physically attach that list item to the "ul" on the webpage
+      projectList.appendChild(project);
     }
   })
-  .catch(error => { // 6. Handle any errors that occur during the fetch request
+
+  // 7. THE SAFETY NET: This block ONLY runs if there was an error in steps 1-6
+  .catch(error => {
+    // Log the technical error in the hidden developer console for debugging
     console.error('Error:', error);
+
+    // Find the projects section on the page so we can talk to the user
+    const projectSection = document.getElementById('projects');
+    
+    // Create a new "p" (paragraph) element to hold our error message
+    const errorMessage = document.createElement('p');
+    
+    // Give it a "class" name so our CSS knows how to make it look pretty
+    errorMessage.className = "error-message"; 
+    
+    // Set the text that the user will actually see
+    errorMessage.innerText = "Check back soon! We encountered an error loading the projects.";
+    
+    // Add this error message into the projects section on the screen
+    projectSection.appendChild(errorMessage);
   });
