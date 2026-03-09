@@ -139,3 +139,66 @@ messageForm.addEventListener("submit", (event) => {
     event.target.reset(); 
 });
 
+// ============ Fetch GitHub Repositories ============
+// Added explicit comments to each step because I'm unlikely to remember
+// why I wrote this code in a few months, and I want to be able to understand 
+// it when I come back to it!
+
+// 1. 'fetch' is like sending a mailman to GitHub's address to ask for data
+fetch('https://api.github.com/users/mgg143/repos')
+  
+  // 2. '.then' means "Once the mailman comes back, do this next"
+  .then(response => {
+    
+    // 3. Check if the "mailman" actually found the house (status 200-299)
+    // If 'response.ok' is false, something went wrong (like a 404 error)
+    if (!response.ok) {
+      // This "throws" us straight down to the .catch() block below
+      throw new Error('Network response was not ok');
+    }
+    
+    // 4. If it was successful, turn that data into a format (JSON) JS can read
+    return response.json();
+  })
+
+  // 5. Now we have the actual list of repositories (we call them 'repositories')
+  .then(repositories => {
+    // Log the repositories to the console to check the data
+    console.log(repositories);
+    // Select the "projects" section and the "ul" (unordered list) inside it
+    const projectSection = document.getElementById('projects');
+    const projectList = projectSection.querySelector('ul');
+
+    // 6. Loop through every project we received from GitHub
+    for (let i = 0; i < repositories.length; i++) {
+      // Create a brand new "li" (list item) element in memory
+      const project = document.createElement('li');
+      
+      // Set the text of that list item to the name of the GitHub repo
+      project.innerText = repositories[i].name;
+      
+      // Physically attach that list item to the "ul" on the webpage
+      projectList.appendChild(project);
+    }
+  })
+
+  // 7. THE SAFETY NET: This block ONLY runs if there was an error in steps 1-6
+  .catch(error => {
+    // Log the technical error in the hidden developer console for debugging
+    console.error('Error:', error);
+
+    // Find the projects section on the page so we can talk to the user
+    const projectSection = document.getElementById('projects');
+    
+    // Create a new "p" (paragraph) element to hold our error message
+    const errorMessage = document.createElement('p');
+    
+    // Give it a "class" name so our CSS knows how to make it look pretty
+    errorMessage.className = "error-message"; 
+    
+    // Set the text that the user will actually see
+    errorMessage.innerText = "Check back soon! We encountered an error loading the projects.";
+    
+    // Add this error message into the projects section on the screen
+    projectSection.appendChild(errorMessage);
+  });
