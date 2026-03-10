@@ -1,5 +1,5 @@
 # Michael Govaerts | Portfolio Project
-**Intro to Programming | Code the Dream | Mars Cohort**
+**Code the Dream | Intro to Programming Course | Mars Cohort (Winter 2025/2026)**
 
 This is my final portfolio project, built to demonstrate core competencies in full-stack web development. It focuses on clean, semantic HTML, mobile-first responsive design, and dynamic content generation using JavaScript and the GitHub API.
 
