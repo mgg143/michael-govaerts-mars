@@ -174,8 +174,9 @@ fetch('https://api.github.com/users/mgg143/repos')
       // Create a brand new "li" (list item) element in memory
       const project = document.createElement('li');
       
-      // Set the text of that list item to the name of the GitHub repo
-      project.innerText = repositories[i].name;
+      // Set the text of that list item to the name of the GitHub repo, 
+      // and make the link clickable
+      project.innerHTML = `<a href="${repositories[i].html_url}" target="_blank">${repositories[i].name}</a>`;
       
       // Physically attach that list item to the "ul" on the webpage
       projectList.appendChild(project);

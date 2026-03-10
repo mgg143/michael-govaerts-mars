@@ -171,7 +171,7 @@ section {
 #projects ul {
   display: flex;
   flex-direction: column; /* Stacked vertically for mobile */
-  gap: 0.9375;              /* Spacing between items */
+  gap: 0.9375rem;              /* Spacing between items */
   padding: 0;             /* Remove default indentation */
   list-style-type: none;  /* Remove those bullet points */
 }
@@ -192,6 +192,14 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Make the project names clickable links that open in a new tab, 
+and ensure they inherit the styling of the card as opposed to being blue
+and underlined */
+#projects a { 
+    text-decoration: none; 
+    color: inherit; 
 }
 
 #projects li:hover {
